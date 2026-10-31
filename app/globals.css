@@ -106,13 +106,30 @@
   line-height: 1.15;
 }
 
-@utility t-hero {
-  font-size: clamp(2.6rem, 6.3vw, 7rem);
+@utility t-wordmark {
+  /* « NEXORA » mesure 5,48 em en Archivo largeur 125, graisse 900, approche -0,03 em : il remplit la largeur utile. */
+  font-size: calc((100vw - 2rem) / 2.95);
   font-weight: 900;
+  font-variation-settings: 'wdth' 125;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 0.8;
+  text-transform: uppercase;
+  @media (min-width: 768px) {
+    font-size: calc((100vw - 4rem) / 5.52);
+  }
+  @media (max-height: 560px) {
+    font-size: 12vw;
+  }
+}
+
+@utility t-lead-hero {
+  font-size: clamp(1.9rem, 3vw, 3.1rem);
+  font-weight: 800;
   font-variation-settings: 'wdth' 112;
   font-stretch: 112%;
-  line-height: 0.96;
-  letter-spacing: -0.04em;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
 @utility font-wide {
@@ -196,6 +213,17 @@ body::after {
 }
 
 /* ---------- Hero ---------- */
+.sculpt-poster {
+  opacity: 0;
+  transform: scale(0.6) rotate(-14deg);
+  animation: sculpt-in 1.8s var(--ease-out-expo) 0.45s forwards;
+}
+@keyframes sculpt-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 .hero-line {
   transform: translate3d(0, 105%, 0);
   animation: letter-rise 1.2s var(--ease-out-expo) forwards;
@@ -552,7 +580,7 @@ details[open]::details-content {
     transform: none;
     transition: none;
   }
-  .hero-silk,
+  .sculpt-poster,
   .fade-in {
     animation: none;
     opacity: 1;
